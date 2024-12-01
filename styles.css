@@ -40,6 +40,12 @@ body {
 
 .quote {
   font-size: 1.2em;
+  font-style: italic;
+}
+
+.quote::before,
+.quote::after {
+  content: '"';
 }
 
 .quote-text {
