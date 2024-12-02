@@ -91,3 +91,7 @@ body {
   vertical-align: middle;
   cursor: pointer;
 }
+
+#toggle-favorite-btn {
+  display: none;
+}
