@@ -5,6 +5,8 @@ import {
   toggleFavoritIcon,
 } from './src/favoritesHandler.js';
 
+import { generateRandomInt } from './src/utils/math.js';
+
 const quoteElement = document.getElementById('quote');
 const quoteAuthorElement = document.getElementById('quote-author');
 const generateBtn = document.getElementById('generate-btn');
@@ -14,12 +16,12 @@ const favoritesContainer = document.getElementById('favorites-container');
 let currentQuoteIndex;
 
 function generateRandomQuote() {
-  currentQuoteIndex = Math.floor(Math.random() * quotes.length);
-  const randomQuote = quotes[currentQuoteIndex];
-  const { quote, author: quoteAuthor } = randomQuote;
+  const randomIndex = generateRandomInt(quotes.length);
+  const { quote, author, isFavorite } = quotes[randomIndex];
+  currentQuoteIndex = randomIndex;
   quoteElement.textContent = quote;
-  quoteAuthorElement.textContent = quoteAuthor;
-  toggleFavoritIcon(randomQuote.isFavorite, toggleFavoriteBtn);
+  quoteAuthorElement.textContent = author;
+  toggleFavoritIcon(isFavorite, toggleFavoriteBtn);
   // toggleFavoriteBtn.textContent = randomQuote.isFavorite // Меняем текст на кнопке добавления цитаты и избранные проверив isFavorite
   //   ? 'Remove from favorite'
   //   : 'Add to favorite';
