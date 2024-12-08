@@ -3,10 +3,11 @@ function toggleFavoritIcon(isFavorite, el) {
   el.classList.toggle('far', !isFavorite);
 }
 
-function showFavoriteCard(quote, author, container) {
+function showFavoriteCard(id, quote, author, container) {
   // проверяем значение логическое isFavorite
   const favoriteCard = document.createElement('div'); // создаем блок div
   favoriteCard.classList.add('favorite-card'); // присваиваем ему id
+  favoriteCard.setAttribute('data-id', id);
   //Добавляем в div два параграфа для цитаты и автора
   favoriteCard.innerHTML = ` 
       <p class="quote-text">${quote}</p>
@@ -15,15 +16,16 @@ function showFavoriteCard(quote, author, container) {
   container.appendChild(favoriteCard); //Добаляем в контейнер, созданный блок
 }
 
-function removeFavoriteCard(quote) {
+function removeFavoriteCard(id) {
   // В противном ищем блок по названию класса
-  const favoriteCards = document.querySelectorAll('.favorite-card');
-  favoriteCards.forEach((card) => {
-    // Удаляем цитату из избранной
-    if (card.textContent.includes(quote)) {
-      card.remove();
-    }
-  });
+
+  const card = document.querySelector(`.favorite-card[data-id="${id}"]`);
+
+  if (card) {
+    card.remove();
+  }
+
+  // Удаляем цитату из избранной
 }
 
 export { toggleFavoritIcon, showFavoriteCard, removeFavoriteCard };

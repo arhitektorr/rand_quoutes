@@ -31,13 +31,16 @@ function toggleFavorite() {
   const currentQuote = quotes[currentQuoteIndex];
   currentQuote.isFavorite = !currentQuote.isFavorite;
   toggleFavoritIcon(currentQuote.isFavorite, toggleFavoriteBtn);
+
   currentQuote.isFavorite
     ? showFavoriteCard(
+        currentQuoteIndex,
         currentQuote.quote,
         currentQuote.author,
         favoritesContainer
       )
-    : removeFavoriteCard(currentQuote.quote);
+    : removeFavoriteCard(currentQuoteIndex);
+
   // toggleFavoriteBtn.textContent = currentQuote.isFavorite // Меняем текст на кнопке добавления цитаты и избранные проверив isFavorite
   //   ? 'Remove from favorite'
   //   : 'Add to favorite';
